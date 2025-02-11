@@ -7,7 +7,7 @@ import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 
 // routes
-import ROUTES from './router/routes';
+import ROUTES from './utils/routes';
 
 // styles
 import './css/general.css';
