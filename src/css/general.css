@@ -1,5 +1,9 @@
 /* :root {} */
 
+body {
+  padding: 10px;
+}
+
 button {
   outline: none;
   border: none;
