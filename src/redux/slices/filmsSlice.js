@@ -4,14 +4,18 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // axios
 import axios from '../../utils/axios';
 
-const getFilmByName = createAsyncThunk(
-  "films/name",
+const fetchFilmByName = createAsyncThunk(
+  "fetchFilmByName",
   async (filmName) => {
+    const data = await axios.get(`/?t=${filmName}&apikey=186be766`);
+    console.log(data);
+    return data;
   }
 );
 
 const initialState = {
   films: [],
+  status: "loading",
 };
 
 const filmsSlice = createSlice({
@@ -19,7 +23,18 @@ const filmsSlice = createSlice({
   initialState,
 
   reducers: {
-
+    [fetchFilmByName.pending]: (state) => {
+      state.films = [];
+      state.status = "loading";
+    },
+    [fetchFilmByName.fulfilled]: (state, action) => {
+      state.films = action.payload;
+      state.status = "loaded";
+    },
+    [fetchFilmByName.rejected]: (state, action) => {
+      state.films = action.payload;
+      state.status = "error";
+    },
   },
 });
 
