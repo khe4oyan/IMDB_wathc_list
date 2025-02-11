@@ -26,10 +26,12 @@ const filmsSlice = createSlice({
       state.films = [];
       state.status = "loading";
     });
+    
     builder.addCase(fetchFilmByName.fulfilled, (state, action) => {
       state.films = action.payload;
       state.status = "loaded";
     });
+
     builder.addCase(fetchFilmByName.rejected, (state, action) => {
       state.films = action.payload;
       state.status = "error";
